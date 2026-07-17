@@ -23,7 +23,7 @@ def main():
     assert customer_df.shape == (5630, 20), "电商用户原始数据形状不正确"
 
     notebook_paths = sorted((ROOT / "notebooks").glob("*.ipynb"))
-    assert len(notebook_paths) == 3, "种子项目应只包含3个学生Notebook"
+    assert len(notebook_paths) == 4, "种子项目应只包含4个学生Notebook"
     assert not any("teacher" in path.name.lower() for path in notebook_paths), \
         "种子项目不应包含教师Notebook"
 
