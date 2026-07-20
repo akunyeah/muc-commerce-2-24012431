@@ -44,7 +44,7 @@ th { color:var(--muted); font-size:13px; }
 .question-list { display:grid; gap:10px; }
 .question-list button { text-align:left; background:var(--sky); color:var(--navy); }
 .chat-panel { min-height:310px; display:flex; flex-direction:column; justify-content:space-between; }
-.answer { min-height:160px; padding:20px; border-radius:10px; background:var(--paper); font-size:18px; line-height:1.7; }
+.answer { min-height:160px; padding:20px; border-radius:10px; background:var(--paper); font-size:17px; line-height:1.85; white-space:pre-wrap; word-break:break-word; }
 #question-form { display:grid; grid-template-columns:1fr auto; gap:10px; margin-top:16px; }
 .empty-state { text-align:center; padding:15vh 0; }
 @media (max-width:800px) { .metric-grid,.chart-grid,.login-panel,.assistant-layout { grid-template-columns:1fr; } .hero,.panel-heading { align-items:start; flex-direction:column; } nav { gap:12px; font-size:14px; } }
