@@ -8,7 +8,8 @@ from pathlib import Path
 # ============================================================
 PROJECT_DIR = Path(__file__).resolve().parent
 HOME_DIR = Path.home()
-USER_ENV = HOME_DIR / ".day07_web_student.env"   # 优先：C:\Users\用户名\.day07_web_student.env
+USER_ENV = HOME_DIR / ".day07_web_student.env"   # 优先1：C:\Users\用户名\.day07_web_student.env
+USER_ENV2 = HOME_DIR / "day07_web_student.env"   # 优先2：C:\Users\用户名\day07_web_student.env
 PROJECT_ENV = PROJECT_DIR / ".env"                # 备选：项目目录下的 .env
 
 try:
@@ -16,13 +17,17 @@ try:
     if USER_ENV.exists():
         load_dotenv(USER_ENV, override=True)
         print(f"[OK] 已从用户主目录加载配置: {USER_ENV}")
+    elif USER_ENV2.exists():
+        load_dotenv(USER_ENV2, override=True)
+        print(f"[OK] 已从用户主目录加载配置: {USER_ENV2}")
     elif PROJECT_ENV.exists():
         load_dotenv(PROJECT_ENV, override=True)
         print(f"[OK] 已从项目目录加载配置: {PROJECT_ENV}")
     else:
         print(
             f"[提示] 未找到大模型 API Key 配置文件。\n"
-            f"       推荐放在: {USER_ENV}\n"
+            f"       推荐放在: {USER_ENV2}\n"
+            f"       或放在: {USER_ENV}\n"
             f"       或放在: {PROJECT_ENV}\n"
             f"       参考内容（三行，填好你的 Key）：\n"
             f"       OPENAI_API_KEY=sk-你的密钥\n"

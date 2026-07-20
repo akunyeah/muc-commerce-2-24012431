@@ -132,7 +132,10 @@ def _call_openai_compatible(system_prompt: str, user_prompt: str) -> str:
     if not api_key or not base_url:
         return (
             "【未配置 OpenAI 兼容 API】\n"
-            "请在 day07_web_student/.env 中设置：\n"
+            "请在以下任一位置设置配置（推荐放在用户主目录，避免被 Git 追踪）：\n"
+            "  C:\\Users\\用户名\\day07_web_student.env\n"
+            "  day07_web_student/.env\n"
+            "\n需要填写：\n"
             "  OPENAI_API_KEY=你的密钥\n"
             "  OPENAI_BASE_URL=https://api.deepseek.com/v1  (或其他兼容服务地址)\n"
             "  OPENAI_MODEL=deepseek-chat  (或其他模型名)\n"
@@ -187,7 +190,10 @@ def _call_dashscope(system_prompt: str, user_prompt: str) -> str:
     if not api_key:
         return (
             "【未配置 DashScope API Key】\n"
-            "请在 day07_web_student/.env 中设置：\n"
+            "请在以下任一位置设置配置（推荐放在用户主目录，避免被 Git 追踪）：\n"
+            "  C:\\Users\\用户名\\day07_web_student.env\n"
+            "  day07_web_student/.env\n"
+            "\n需要填写：\n"
             "  DASHSCOPE_API_KEY=你的密钥\n"
             "  DASHSCOPE_MODEL=qwen-plus\n"
             "\n然后重启 Flask。"
@@ -227,15 +233,18 @@ def call_llm(system_prompt: str, user_prompt: str) -> str:
 
     return (
         "【尚未配置任何大模型 API】\n"
-        "请在 day07_web_student/.env 中任选一种方式配置：\n"
-        "\n方式一 · OpenAI 兼容（推荐，可接 DeepSeek / Ollama / LM Studio 等）：\n"
+        "请在以下任一位置放置配置文件（推荐用户主目录，彻底避免被 Git 追踪）：\n"
+        "  C:\\Users\\用户名\\day07_web_student.env\n"
+        "  day07_web_student/.env\n"
+        "\n任选一种方式填写：\n"
+        "方式一 · OpenAI 兼容（推荐，可接 DeepSeek / Ollama / LM Studio 等）：\n"
         "  OPENAI_API_KEY=你的密钥\n"
         "  OPENAI_BASE_URL=https://api.deepseek.com/v1\n"
         "  OPENAI_MODEL=deepseek-chat\n"
         "\n方式二 · 通义千问（DashScope）：\n"
         "  DASHSCOPE_API_KEY=你的密钥\n"
         "  DASHSCOPE_MODEL=qwen-plus\n"
-        "\n保存 .env 后重启 Flask 即可生效。"
+        "\n保存后重启 Flask 即可生效。"
     )
 
 
