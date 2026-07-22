@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}数据看板 | 电商用户分析系统{% endblock %}
+{% block content %}
+<section class="hero">
+  <div>
+    <p class="eyebrow">WELCOME, {{ username }}</p>
+    <h1>电商用户行为数据看板</h1>
+    <p class="lead">数据来自第5天统计分析，图表来自第6天可视化成果。</p>
+  </div>
+  <a class="button secondary" href="{{ url_for('assistant') }}">进入智能问答</a>
+</section>
+
+<section class="metric-grid">
+  {% for metric in metrics %}
+  <article class="metric-card">
+    <span>{{ metric.label }}</span>
+    <strong>{{ metric.value }}</strong>
+    <small>{{ metric.note }}</small>
+  </article>
+  {% endfor %}
+</section>
+
+<section class="panel">
+  <div class="panel-heading">
+    <div><p class="eyebrow">INTERACTION</p><h2>按偏好品类筛选</h2></div>
+    <form method="get">
+      <select name="category" onchange="this.form.submit()">
+        {% for category in categories %}
+        <option value="{{ category }}" {% if category == selected_category %}selected{% endif %}>{{ category }}</option>
+        {% endfor %}
+      </select>
+    </form>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>偏好品类</th><th>用户数</th><th>流失率</th><th>平均订单数</th></tr></thead>
+      <tbody>
+        {% for row in category_rows %}
+        <tr><td>{{ row['偏好品类'] }}</td><td>{{ row['用户数'] }}</td><td>{{ row['流失率'] }}</td><td>{{ row['平均订单数'] }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="chart-grid">
+  <article class="panel"><h2>不同偏好品类用户比较</h2><img src="{{ url_for('static', filename='images/01_category_bar.png') }}" alt="品类用户比较柱状图"></article>
+  <!-- TODO 2-3：复制上面的article，展示03_ordered_line.png，并写出准确标题和alt文本。 -->
+</section>
+
+<aside class="insight"><strong>数据观察：</strong>{{ insight }}</aside>
+{% endblock %}
